@@ -6,39 +6,57 @@ import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } f
 
 export default class Counter extends Component{
     state = {
-        number: 0,
-        harga:10000,
-        biaya:10000
+        qty: 0,
+        // number: 0,
+        // harga:10000,
+        // biaya:10000
     };
 
-        Tambah = () => {
-        var number = this.state.number;
+        // Tambah = () => {
+        // var number = this.state.number;
 
-        this.setState(({number, harga, biaya}) => ({
-            number: number + 1
-        })) ;
+        // this.setState(({number, harga, biaya}) => ({
+        //     number: number + 1
+        // })) ;
 
-        if (number > 0) {
-            this.setState(({number, harga, biaya}) => ({
-                harga: harga + biaya
-            })) ;
-        }
+        // if (number > 0) {
+        //     this.setState(({number, harga, biaya}) => ({
+        //         harga: harga + biaya
+        //     })) ;
+        // }
         
-        };
-        Kurang = () => {
-        var number = this.state.number;
+        // };
+        // Kurang = () => {
+        // var number = this.state.number;
 
-        if (number > 1) {
-            this.setState(({number, harga, biaya}) => ({
-                harga: harga - biaya
-            })) ;
+        // if (number > 1) {
+        //     this.setState(({number, harga, biaya}) => ({
+        //         harga: harga - biaya
+        //     })) ;
+        // }
+        // if (number > 0) {
+        //     this.setState(({number, harga, biaya}) => ({
+        //         number: number - 1
+        //     })) ;
+        // }
+        // };
+
+        tambah = () => {
+            this.setState({
+                qty: this.state.qty + 1
+            })
+            this.props.tambahTotalHarga(this.props.harga)
         }
-        if (number > 0) {
-            this.setState(({number, harga, biaya}) => ({
-                number: number - 1
-            })) ;
+
+        kurang = () => {
+            if (this.state.qty === 0){
+                return;
+            }
+            this.setState({
+                qty: this.state.qty - 1
+            })
+            this.props.kurangTotalHarga(this.props.harga)
         }
-        };
 
         render(){
             // function Tambah() {
@@ -55,15 +73,15 @@ export default class Counter extends Component{
 
                     
                     
-                    <h3>Harga : Rp {this.state.harga}</h3>
+                    <h3>Harga : Rp {this.props.harga}</h3>
                     <div align="center">
                     <br></br>
                     <hr/>
                     <CardSubtitle align="center">Pesan Berapa</CardSubtitle>
                     <Navbar style={{backgroundColor: "white"}} color="faded" light>
-                    <Button onClick={this.Kurang} color="danger">-</Button>{' '}
-                    <h2 align="center">{this.state.number}</h2>
-                    <Button onClick={this.Tambah} color="success">+</Button>{' '}
+                    <Button onClick={this.kurang} color="danger">-</Button>{' '}
+                    <h2 align="center">{this.state.qty}</h2>
+                    <Button onClick={this.tambah} color="success">+</Button>{' '}
                      </Navbar>
                     
                     </div>
