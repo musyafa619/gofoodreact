@@ -4,7 +4,7 @@ import home from './containers/Home';
 import Dashboard from './containers/Dashboard/dashboard';
 
 class App extends Component {
-
+console.log("mantap");
   render() {
     return (
       <div>
